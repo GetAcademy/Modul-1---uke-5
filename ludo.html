@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .board {
+            display: grid;
+            grid-template-columns: repeat(15, 40px);
+            grid-template-rows: repeat(15, 40px);
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .white {
+            background-color: white;
+        }
+
+        .fullBorder {
+            border: 2px solid black;
+        }
+
+        .borderUp {
+            border-top: 2px solid black;
+        }
+
+        .borderDown {
+            border-bottom: 2px solid black;
+        }
+
+        .borderLeft {
+            border-left: 2px solid black;
+        }
+
+        .borderRight {
+            border-right: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="board" class="board">
+    </div>
+
+    <script>
+        drawBoard();
+        function drawBoard() {
+            document.getElementById('board').innerHTML =
+                homeZoneTop('green')
+                + repeat3(div('white fullBorder'))
+                + homeZoneTop('yellow')
+
+                + div('green borderLeft borderRight')
+                + repeat4(div('white'))
+                + div('green borderLeft borderRight')
+
+                + div('white fullBorder')
+                + repeat2(div('yellow fullBorder'))
+                
+                + div('yellow borderLeft borderRight')
+                + repeat4(div('white'))
+                + div('yellow borderLeft borderRight')
+                ;
+        }
+
+        function homeZoneTop(color) {
+            return div(`${color} borderLeft borderUp`)
+                + repeat4(div(`${color} borderUp borderDown`))
+                + div(`${color} borderRight borderUp`);
+        }
+
+        function div(cssClasses) {
+            return `<div class="${cssClasses}"></div>`;
+        }
+
+        function repeat6(html) {
+            return repeat3(html) + repeat3(html);
+        }
+
+        function repeat4(html) {
+            return repeat2(html) + repeat2(html);
+        }
+
+        function repeat3(html) {
+            return html + html + html;
+        }
+
+        function repeat2(html) {
+            return html + html;
+        }
+        /*
+            repeat6(greenDiv)
+
+            function greenDiv() {
+                return '<div class="green"></div>';
+            }
+
+            function repeat6(func) {
+                return func() +
+                    func() +
+                    func() +
+                    func() +
+                    func() +
+                    func();
+            }
+
+        */
+    </script>
+
+</body>
+
+</html>
